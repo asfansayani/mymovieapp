@@ -192,6 +192,10 @@ h2 {
     background-position: left calc((50vw - 170px) - 340px) top;
     position: relative;
     z-index: 2;
+    min-height: calc(100vh - 102px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .movie-banner::before {
     position: absolute;

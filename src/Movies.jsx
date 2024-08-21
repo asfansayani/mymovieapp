@@ -1,6 +1,7 @@
 import MediaCard from "./components/MediaCard";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import SecHd from "./components/SecHd";
 const apiUrl = import.meta.env.VITE_API_URL;
 const apitoken = import.meta.env.VITE_API_TOKEN;
 const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
@@ -51,7 +52,8 @@ const Movies = () => {
     <>
       <section className="sec-pad">
         <Container>
-          <Row>
+        <h1><b>Movies</b></h1>
+          <Row className="justify-content-center">
             {data.results && data.results.length > 0 ? (
               data.results.map((data) => (
                 <Col lg={2} key={data.id}>
@@ -61,6 +63,7 @@ const Movies = () => {
                     date={data.release_date || data.first_air_date}
                     percent={Math.round(data.vote_average * 10)}
                     link={data.id}
+                    media={"movie"}
                   />
                 </Col>
               ))

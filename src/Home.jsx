@@ -242,6 +242,7 @@ const Home = () => {
                                 onhover={() => handleMouseEnter(`${imageBaseUrl2}${data.poster_path}`)}
                                 id={data.id}
                                 link={data.id}
+                                media={data.media_type}
                               />
                             </SwiperSlide>
                           ))
@@ -285,6 +286,7 @@ const Home = () => {
                                 onhover={() => handleMouseEnter(`${imageBaseUrl2}${data.poster_path}`)}
                                 id={data.id}
                                 link={data.id}
+                                media={data.media_type}
                               />
                             </SwiperSlide>
                           ))

@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from "./Home"
-import Blog  from "./Blog"
 import App from './App'
 import './index.css'
 import Movies from './Movies'
@@ -15,17 +14,14 @@ const router = createBrowserRouter([
       {
         path:"/mymovieapp",
         element: <Home />,
-      },  {
-        path:"/blog",
-        element: <Blog />
-      },  {
-        path:"/movies",
+      }, {
+        path:"/mymovieapp/movies",
         element: <Movies />
       },  {
-        path:"/movie/:id",
+        path:"/mymovieapp/movie/:id",
         element: <Movie />
       }, {
-        path:"/tv/:id",
+        path:"/mymovieapp/tv/:id",
         element: <Movie />
       }
     ]
