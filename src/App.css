@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+body {
+    font-family: "Source Sans 3", sans-serif;
+}
+h2 {
+    font-weight: 600;
+}
+.sec-pad {
+    padding: 40px 0;
+}
+.navbar {
+    background-color: #032541;
+    color: #fff;
+}
+
+.navbar-brand {
+    color: #fff;
+}
+
+.nav-link.active {
+    color: #1ed5a9 !important;
+}
+
+.banner {
+    color: #fff;
+    background: #115f9f url(assets/images/banner.webp);
+    background-blend-mode: multiply;
+    padding: 60px 40px;
+}
+.banner h1 {
+    font-size: 48px;
+}
+.banner p {
+    font-size: 32px;
+}
+.inputWrap {
+    border-radius: 99px;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 0 0 0 20px;
+}
+.banner input[type="search"] {
+    background-color: transparent;
+    border: none;
+    flex-grow: 1;
+    height: 45px;
+    color: rgba(0, 0, 0, .5);
+}
+.banner input::placeholder {
+    color: rgba(0, 0, 0, .5) !important;
+}
+.banner button {
+    height: 46px;
+    padding: 10px 26px;
+    border: 0;
+    background: linear-gradient(to right, #1ed5a9 0%, #01b4e4 100%);
+    border-radius: 30px;
+    color: #fff;
+}
+.nav-tabs {
+    border: 1px solid #032541;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.nav-tabs .nav-link{
+    border: none;
+    margin-bottom: 0 !important;
+    border-radius: 99px;
+    padding: 4px 30px;
+    color: #032541;
+    font-weight: 600;
+}
+.nav-tabs .nav-link.active{
+    background-color: #032541;
+}
+.tab-content {
+    width: 100%;
+    display: block;
+}
+.slider-sec.slider-sec1 .container {
+    background: url(assets/images/sec2bg.svg) no-repeat center bottom;
+}
+.content {
+    position: relative;
+    padding-top: 20px;
+}
+.canvas {
+    top: -20px;
+    left: 5px;
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    background-color: #032541;
+    border-radius: 50%;
+    color: #fff;
+    align-content: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+}
+.canvas sup{
+    font-size: 10px;
+}
+.content h6{
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.card {
+    transition: opacity 1s ease;
+}
+.card-img-top {
+    width: 100%;
+    height: 225px;
+    background-color:#dbdbdb90;
+    object-fit: none;
+    border-radius: 10px;
+}
+.fade {
+    transition: opacity .5s linear;
+}
+.slidersec2 .container.sec-pad {
+    background: no-repeat center center / cover;
+    position: relative;
+    z-index: 2;
+}
+.slidersec2 .container.sec-pad::before {
+    background: linear-gradient(to right, #032541bf 0%, #032541bf 100%);
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.slidersec2 .nav-tabs {
+    border: 1px solid #1ed5a9;
+}
+.slidersec2 .nav-tabs .nav-link {
+    color: #fff;
+}
+.slidersec2 .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #1ed5a9;
+}
+.trailerCard {
+    overflow: hidden;
+}
+.trailerCard img {
+    transition: .5s;
+}
+.trailerCard:hover img {
+    transform: scale(1.05);
+}
+
+.trailerCard button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+    border: none;
+    background: url(./assets/images/play.svg) no-repeat;
+    background-size: 30% 30%;
+    background-position: 50% 30%;
+    filter: invert(1);
+}
+.trailerCard button:hover, .trailerCard button:focus, :not(.btn-check)+.btn:active {
+    background-color: transparent;
+}
+.modal-dialog {
+    max-width: 1280px;
+}
+.modal-content {
+    background-color: transparent;
+    border: none;
+    height: 90%;
+    width: 100%;
+}
+.modal.show .modal-dialog {
+    margin: 0 auto;
+    height: 100%;
+    align-content: center;
+}
+.swiper-scrollbar {
+    height: var(--swiper-scrollbar-size, 7px) !important;
+}
+.movie-banner {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left calc((50vw - 170px) - 340px) top;
+    position: relative;
+    z-index: 2;
+}
+.movie-banner::before {
+    position: absolute;
+    content: "";
+    background-image: linear-gradient(to right, rgba(31.5, 31.5, 31.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 31.5, 31.5, 0.84) 50%, rgba(31.5, 31.5, 31.5, 0.84) 100%);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    inset: 0;
+}
