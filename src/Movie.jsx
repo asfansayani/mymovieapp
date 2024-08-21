@@ -30,22 +30,22 @@ export default function Movie() {
       console.log(data)
       setData(data)
     });
-    fetch(`${apiUrl}${endpoint}/${id}/credits`, {
-      headers: {
-        'Authorization': `Bearer ${apitoken}`,
-        'Content-Type': 'application/json'
-      }
-    }).then((res) => {
-      if (!res.ok) {
-        throw new Error('Network response was not ok')
-      }
-      return res.json();
-    }).then((data) => {
-      console.log(data)
-       directorname = data.crew.find(role => role.department === 'Directing');
-       console.log(directorname)
-      setCredit(data)
-    })
+    // fetch(`${apiUrl}${endpoint}/${id}/credits`, {
+    //   headers: {
+    //     'Authorization': `Bearer ${apitoken}`,
+    //     'Content-Type': 'application/json'
+    //   }
+    // }).then((res) => {
+    //   if (!res.ok) {
+    //     throw new Error('Network response was not ok')
+    //   }
+    //   return res.json();
+    // }).then((data) => {
+    //   console.log(data)
+    //    directorname = data.crew.find(role => role.department === 'Directing');
+    //    console.log(directorname)
+    //   setCredit(data)
+    // })
   }, [id,endpoint])
 
   return (
@@ -54,11 +54,11 @@ export default function Movie() {
         <>
           <div className='movie-banner py-5' style={{backgroundImage: `url(${imageBaseUrl2}${data.backdrop_path})` }}>
             <SingleMovie
-              name={data.original_title}
+              name={data.original_title || data.name}
               img={`${imageBaseUrl}${data.poster_path}`}
-              date={data.release_date}
+              date={data.release_date || data.first_air_date}
               desc={data.overview}
-              director={directorname.name}
+              // director={directorname.original_name || "soon"}
               media={isMovie ? 'movie' : 'tv'}
             />
           </div>

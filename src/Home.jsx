@@ -162,7 +162,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      <section className="slidersec2 text-white">
+      <section className="slidersec2 text-white mb-4">
         <Container className="sec-pad pt-4 pb-0 px-4" style={{backgroundImage: `url(${backgroundImage})`}}>
           <Row>
             <Col>
@@ -306,7 +306,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      <section className="slider-sec slider-sec2 sec-pad">
+      {/* <section className="slider-sec slider-sec2 sec-pad">
         <Container>
           <Row>
             <Col>
@@ -402,7 +402,7 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
     </>
   );
 };

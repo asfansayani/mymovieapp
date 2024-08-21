@@ -14,8 +14,8 @@ export default function SingleMovie({ img, name, date, desc,director}) {
             <h4>overview</h4>
             <p>{desc}</p>
             <div className='mt-5'>
-            <h6 className='mb-0'><b>{director}</b></h6>
-            <p>Director</p>
+            {/* <h6 className='mb-0'><b>{director}</b></h6>
+            <p>Director</p> */}
             </div>
 
           </Col>
