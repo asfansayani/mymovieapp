@@ -4,7 +4,6 @@ export default function Banner() {
     const [input, setInput] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        console.log(input); 
     }
     return (
         <>
