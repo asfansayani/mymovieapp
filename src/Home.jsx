@@ -306,7 +306,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      {/* <section className="slider-sec slider-sec2 sec-pad">
+      <section className="slider-sec slider-sec2 sec-pad">
         <Container>
           <Row>
             <Col>
@@ -402,7 +402,7 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </section> */}
+      </section>
     </>
   );
 };

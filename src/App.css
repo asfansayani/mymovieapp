@@ -206,3 +206,7 @@ h2 {
     z-index: -1;
     inset: 0;
 }
+.search-results img {
+    height: 294px;
+    object-fit: cover;
+}

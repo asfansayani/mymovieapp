@@ -1,10 +1,19 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URL;
+const apitoken = import.meta.env.VITE_API_TOKEN;
 export default function Banner() {
+    const navigate = useNavigate()
+
+  const gotToNewPage=()=>{
+    navigate(`/mymovieapp/search/?query=${encodeURIComponent(input)}`);
+  }
     const [input, setInput] = useState('')
     const handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
     }
+
     return (
         <>
             <Container>
@@ -17,7 +26,7 @@ export default function Banner() {
                                 <input type="search" value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     placeholder='Search for a movie, tv show, person......' />
-                                <button type="submit" className=''>Search</button>
+                                <button onClick={() => gotToNewPage()} type="submit" className=''>Search</button>
                             </form>
                         </Col>
                     </Row>

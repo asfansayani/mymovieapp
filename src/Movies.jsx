@@ -26,7 +26,8 @@ const Movies = () => {
   }, [])
   const handleupdate = ()=> {
     setLoadData((prev) => prev + 1);
-}
+    
+  }
 
   useEffect(() => {
     if(loaddata > 1) {
@@ -48,6 +49,7 @@ const Movies = () => {
       })
     }
   }, [loaddata])
+  
   return (
     <>
       <section className="sec-pad">

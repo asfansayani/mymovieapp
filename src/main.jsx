@@ -6,9 +6,10 @@ import App from './App'
 import './index.css'
 import Movies from './Movies'
 import Movie from './Movie'
+import Search from './Search'
 const router = createBrowserRouter([
   {
-    path:"/",
+    path:"/mymovieapp",
     element: <App />,
     children:[
       {
@@ -23,6 +24,9 @@ const router = createBrowserRouter([
       }, {
         path:"/mymovieapp/tv/:id",
         element: <Movie />
+      }, {
+        path:"/mymovieapp/search",
+        element: <Search />
       }
     ]
   }
