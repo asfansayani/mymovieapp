@@ -17,7 +17,7 @@ export default function MediaCard({ img, name, date, percent, link , media}) {
 
     return (
         <>
-            <Link to={`http://localhost:5173/mymovieapp/${media}/${link}`} className='text-decoration-none'>
+            <Link to={`/mymovieapp/${media}/${link}`} className='text-decoration-none'>
                 <Image src={img} rounded fluid loading='lazy' />
                 <div className="content text-dark">
                     <div className='canvas'>{percent}<sup>%</sup></div>
