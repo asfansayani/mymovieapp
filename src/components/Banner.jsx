@@ -7,7 +7,7 @@ export default function Banner() {
     const navigate = useNavigate()
 
   const gotToNewPage=()=>{
-    navigate(`/mymovieapp/search/?query=${encodeURIComponent(input)}`);
+    navigate(`/mymovieapp/search/?query=${input}`);
   }
     const [input, setInput] = useState('')
     const handleSubmit = (e) => {

@@ -10,13 +10,21 @@ const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 const Search = () => {
     const [data, setData] = useState([]);
     const location = useLocation();
+    const [filter, setFilter] = useState("movie")
+    const handleFilter = (e) => {
+        setFilter(e.target.name)
+        document.querySelectorAll('.primarybtn').forEach(button => {
+            button.classList.remove('active');
+        });
+        e.target.classList.add("active")
+    }
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const query = queryParams.get('query') || '';
         console.log(query)
         if (query) {
-            fetch(`${apiUrl}search/multi?query=${encodeURIComponent(query)}`, {
+            fetch(`${apiUrl}search/${filter}?query=${query}`, {
                 headers: {
                     'Authorization': `Bearer ${apitoken}`,
                     'Content-Type': 'application/json'
@@ -33,24 +41,39 @@ const Search = () => {
                     setData(data.results);
                 })
         }
-    }, [location.search]);
+    }, [location.search, filter]);
     return (
         <section className="sec-pad">
             <Container>
-                <SecHd sechd="search" />
+                <div className="mb-5">
+                <button onClick={handleFilter} name='movie' className='primarybtn px-5 me-2 active'>Movie</button>
+                <button onClick={handleFilter} name='tv' className='primarybtn px-5 me-2'>Tv</button>
+                <button onClick={handleFilter} name='person' className='primarybtn px-5 me-2'>person</button>
+                <button onClick={handleFilter} name='collection' className='primarybtn px-5'>collection</button>
+                </div>
+                <SecHd sechd={filter} />
                 <div className="search-results">
                     {data.length > 0 ? (
                         <Row>
                             {data.map((data) => (
                                 <Col lg={2} key={data.id}>
-                                    <MediaCard
+                                    {filter !== "person" ? (
+                                        <MediaCard
                                         img={data.poster_path ? `${imageBaseUrl}${data.poster_path}` : placeholderimg}
                                         name={data.title || data.name}
                                         date={data.release_date || data.first_air_date}
                                         percent={Math.round(data.vote_average * 10)}
                                         link={data.id}
-                                        media={"movie"}
-                                    />
+                                        media={data.media_type || filter}
+                                        classname={filter == "collection" ? "collection" : ""}
+                                    /> 
+                                    ) : (
+                                        <div>
+                                            <img src={data.profile_path ? `${imageBaseUrl}${data.profile_path}` : placeholderimg } alt={data.name} />
+                                            <h5>{data.name}</h5>
+                                        </div>
+                                    )}
+                                    
                                 </Col>
                             ))}
                         </Row>

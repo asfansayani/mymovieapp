@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-export default function MediaCard({ img, name, date, percent, link , media}) {
+export default function MediaCard({ img, name, date, percent, link , media, classname}) {
     let bgcolor;
     if (percent < 40) {
         bgcolor = "red"
@@ -17,7 +17,7 @@ export default function MediaCard({ img, name, date, percent, link , media}) {
 
     return (
         <>
-            <Link to={`/mymovieapp/${media}/${link}`} className='text-decoration-none'>
+            <Link to={`/mymovieapp/${media}/${link}`} className={`text-decoration-none ${classname}`}>
                 <Image src={img} rounded fluid loading='lazy' />
                 <div className="content text-dark">
                     <div className='canvas'>{percent}<sup>%</sup></div>

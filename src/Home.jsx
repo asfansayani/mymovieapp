@@ -14,14 +14,16 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const apitoken = import.meta.env.VITE_API_TOKEN;
 const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 const imageBaseUrl2 = 'https://image.tmdb.org/t/p/w355_and_h200_multi_faces';
-
+import placeholderimg from "./assets/images/placeholder.jpg"
 
 const Home = () => {
   const placeholderArray = Array.from({ length: 7 }, (index) => index)
   const [trendingData, setTrendingData] = useState([]);
   const [trailerData, setTrailerData] = useState([]);
+  const [tvData, setTvData] = useState([]);
   const [eventKey, setEventKey] = useState('day');
   const [eventKey2, setEventKey2] = useState('all');
+  const [eventKey3, setEventKey3] = useState('airing_today');
 
   useEffect(() => {
     fetch(`${apiUrl}trending/all/${eventKey}`, {
@@ -59,6 +61,24 @@ const Home = () => {
         console.log(data);
       })
   }, [eventKey2]);
+  useEffect(() => {
+    fetch(`${apiUrl}tv/${eventKey3}?page=4`, {
+      headers: {
+        'Authorization': `Bearer ${apitoken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setTvData(data);
+      })
+  }, [eventKey3]);
   const [backgroundImage, setBackgroundImage] = useState(bgimg);
   const handleMouseEnter = (imgUrl) => {
     setBackgroundImage(imgUrl);
@@ -312,8 +332,8 @@ const Home = () => {
             <Col>
               <div className="d-flex gap-4 flex-wrap align-items-center">
                 <SecHd sechd="What's Popular" />
-                <Tabs id="uncontrolled-tab-example"  activeKey={eventKey} onSelect={(key) => setEventKey(key)}>
-                  <Tab eventKey="day" title="Today" className="fade">
+                <Tabs id="uncontrolled-tab-example"  activeKey={eventKey3} onSelect={(key) => setEventKey3(key)}>
+                  <Tab eventKey="airing_today" title="Airing Today" className="fade">
                     <Container>
                       <Swiper spaceBetween={10} scrollbar={{
                         hide: false,
@@ -332,16 +352,16 @@ const Home = () => {
                         }}
                         modules={[Scrollbar]}
                         className="mySwiper">
-                        {trendingData.results && trendingData.results.length > 0 ? (
-                          trendingData.results.map((data) => (
+                        {tvData.results && tvData.results.length > 0 ? (
+                          tvData.results.map((data) => (
                             <SwiperSlide key={data.id}>
                               <MediaCard
-                                img={`${imageBaseUrl}${data.poster_path}`}
+                                img={data.poster_path ? `${imageBaseUrl}${data.poster_path}` : placeholderimg}
                                 name={data.title || data.name}
                                 date={data.release_date || data.first_air_date}
                                 percent={Math.round(data.vote_average * 10)}
                                 link={data.id}
-                                media={data.media_type}
+                                media="tv"
                               />
                             </SwiperSlide>
                           ))
@@ -355,7 +375,7 @@ const Home = () => {
                       </Swiper>
                     </Container>
                   </Tab>
-                  <Tab eventKey="week" title="Week">
+                  <Tab eventKey="on_the_air" title="On The Air">
                     <Container>
                       <Swiper spaceBetween={20} scrollbar={{
                         hide: false,
@@ -374,16 +394,100 @@ const Home = () => {
                         }}
                         modules={[Scrollbar]}
                         className="mySwiper">
-                        {trendingData.results && trendingData.results.length > 0 ? (
-                          trendingData.results.map((data) => (
+                        {tvData.results && tvData.results.length > 0 ? (
+                          tvData.results.map((data) => (
                             <SwiperSlide key={data.id}>
                               <MediaCard
-                                img={`${imageBaseUrl}${data.poster_path}`}
+                                img={data.poster_path ? `${imageBaseUrl}${data.poster_path}` : placeholderimg}
                                 name={data.title || data.name}
                                 date={data.release_date || data.first_air_date}
                                 percent={Math.round(data.vote_average * 10)}
                                 link={data.id}
-                                media={data.media_type}
+                                media="tv"
+                              />
+                            </SwiperSlide>
+                          ))
+                        ) : (
+                          placeholderArray.map((index) => (
+                            <SwiperSlide key={index}>
+                              <CardPlaceholder/>
+                            </SwiperSlide>
+                          ))
+                        )}
+                      </Swiper>
+                    </Container>
+                  </Tab>
+                  <Tab eventKey="popular" title="Popular">
+                    <Container>
+                      <Swiper spaceBetween={20} scrollbar={{
+                        hide: false,
+                        draggable: true
+                      }}
+                        breakpoints={{
+                          340: {
+                            slidesPerView: 2,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                          },
+                          1200: {
+                            slidesPerView: 7,
+                          },
+                        }}
+                        modules={[Scrollbar]}
+                        className="mySwiper">
+                        {tvData.results && tvData.results.length > 0 ? (
+                          tvData.results.map((data) => (
+                            <SwiperSlide key={data.id}>
+                              <MediaCard
+                                img={data.poster_path ? `${imageBaseUrl}${data.poster_path}` : placeholderimg}
+                                name={data.title || data.name}
+                                date={data.release_date || data.first_air_date}
+                                percent={Math.round(data.vote_average * 10)}
+                                link={data.id}
+                                media="tv"
+                              />
+                            </SwiperSlide>
+                          ))
+                        ) : (
+                          placeholderArray.map((index) => (
+                            <SwiperSlide key={index}>
+                              <CardPlaceholder/>
+                            </SwiperSlide>
+                          ))
+                        )}
+                      </Swiper>
+                    </Container>
+                  </Tab>
+                  <Tab eventKey="top_rated" title="Top Rated">
+                    <Container>
+                      <Swiper spaceBetween={20} scrollbar={{
+                        hide: false,
+                        draggable: true
+                      }}
+                        breakpoints={{
+                          340: {
+                            slidesPerView: 2,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                          },
+                          1200: {
+                            slidesPerView: 7,
+                          },
+                        }}
+                        modules={[Scrollbar]}
+                        className="mySwiper">
+                        {tvData.results && tvData.results.length > 0 ? (
+                          tvData.results.map((data) => (
+                            <SwiperSlide key={data.id}>
+                              <MediaCard
+                                img={data.poster_path ? `${imageBaseUrl}${data.poster_path}` : placeholderimg}
+                                name={data.title || data.name}
+                                date={data.release_date || data.first_air_date}
+                                percent={Math.round(data.vote_average * 10)}
+                                link={data.id}
+                                media="tv"
                               />
                             </SwiperSlide>
                           ))
